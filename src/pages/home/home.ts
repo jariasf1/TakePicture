@@ -46,14 +46,28 @@ export class HomePage {
         fileKey: 'file',
         fileName: nameFile,
         chunkedMode: false,
+        httpMethod: 'POST',
+        params: {'type': 1, 'entityName': 'UserBundle:Cuidador', 'entityId': 40, 'isActive': 'true'},
         mimeType: "image/jpeg",
         headers: {}
       }
     
-      fileTransfer.upload(this.imageURI, 'http://54.152.202.228/UploadVideo/upload.php', options)
+      // fileTransfer.upload(this.imageURI, 'http://54.152.202.228/UploadVideo/upload.php', options)
+      //   .then((data) => {
+      //   console.log(data+" Uploaded Successfully");
+      //   this.imageFileName = "http://54.152.202.228/UploadVideo/uploads/"+nameFile;
+      //   loader.dismiss();
+      //   this.presentToast("Image uploaded successfully");
+      // }, (err) => {
+      //   console.log(err);
+      //   loader.dismiss();
+      //   this.presentToast(err);
+      // });
+
+      fileTransfer.upload(this.imageURI, 'http://54.152.202.228/SeniorFirst/web/media/file-send-app/', options)
         .then((data) => {
         console.log(data+" Uploaded Successfully");
-        this.imageFileName = "http://54.152.202.228/UploadVideo/uploads/"+nameFile;
+        this.imageFileName = "http://54.152.202.228/SeniorFirst/web/uploads/"+nameFile;
         loader.dismiss();
         this.presentToast("Image uploaded successfully");
       }, (err) => {
