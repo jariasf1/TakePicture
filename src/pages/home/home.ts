@@ -40,20 +40,20 @@ export class HomePage {
         content: "Uploading..."
       });
       loader.present();
+      let nameFile = this.createFileName();
       const fileTransfer: FileTransferObject = this.transfer.create();
-    
       let options: FileUploadOptions = {
-        fileKey: 'ionicfile',
-        fileName: 'ionicfile',
+        fileKey: 'file',
+        fileName: nameFile,
         chunkedMode: false,
         mimeType: "image/jpeg",
         headers: {}
       }
     
-      fileTransfer.upload(this.imageURI, 'http://54.152.202.228/SeniorFirst/web/media/file-send/1/UserBundle:Cuidador/45/false', options)
+      fileTransfer.upload(this.imageURI, 'http://54.152.202.228/UploadVideo/upload.php', options)
         .then((data) => {
         console.log(data+" Uploaded Successfully");
-        this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"
+        this.imageFileName = "http://54.152.202.228/UploadVideo/uploads/"+nameFile;
         loader.dismiss();
         this.presentToast("Image uploaded successfully");
       }, (err) => {
@@ -61,6 +61,13 @@ export class HomePage {
         loader.dismiss();
         this.presentToast(err);
       });
+    }
+
+    private createFileName() {
+      var d = new Date(),
+      n = d.getTime(),
+      newFileName =  n + ".jpeg";
+      return newFileName;
     }
 
     presentToast(msg) {
