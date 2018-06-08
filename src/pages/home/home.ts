@@ -66,8 +66,9 @@ export class HomePage {
 
       fileTransfer.upload(this.imageURI, 'http://54.152.202.228/SeniorFirst/web/media/file-send-app/', options)
         .then((data) => {
-        console.log(data+" Uploaded Successfully");
-        this.imageFileName = "http://54.152.202.228/SeniorFirst/web/uploads/"+data;
+        console.log("Uploaded Successfully");
+        let response = JSON.parse(data.response);
+        this.imageFileName = "http://54.152.202.228/SeniorFirst/web/uploads/" + response.path;
         loader.dismiss();
         this.presentToast("Image uploaded successfully");
       }, (err) => {
